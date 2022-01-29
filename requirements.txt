@@ -1,0 +1,8 @@
+slack_sdk
+
+finviz
+matplotlib
+seaborn
+yfinance
+pandas==1.3.5
+fpdf==1.7.2
