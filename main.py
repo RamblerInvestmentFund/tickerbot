@@ -115,9 +115,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-def sandbox():
-    """snippets i was trying out"""
-
-    quit()
