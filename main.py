@@ -97,9 +97,7 @@ def main():
                     )
                     send_report(client=client, dm=dm, ticker=ticker)
             except Exception as ex:
-                print("error")
-                print(ex)
-                print()
+                print("error", '\n', ex, '\n')
                 client.chat_postMessage(channel=dm, text=f"error ... please contact {AUTHORS}")
 
             time.sleep(1.2)  # tier 3 feature
