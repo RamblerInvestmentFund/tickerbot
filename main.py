@@ -8,12 +8,9 @@ from slack_sdk import WebClient
 
 import pdf
 
-# for users outside of RIF ... your bot will not have the same uid
+# for RIF slack...
 TICKERBOT = "U030PM1HAEM"
 AUTHORS = ['Matt Hyatt']
-SECTOR_MATERIALS = "CREMP7J77"
-MATT_HYATT = "U02D6SFQ57Y"
-ANTHONY_PETERS = "U01BWB9JQ2U"
 
 
 def build_bot():
@@ -76,23 +73,20 @@ def send_report(*, client, dm, ticker):
     response = client.files_upload(channels=dm, file=f"{ticker}-report.pdf")
 
     # cleanup
-    pass
+    p = Path(__file__).parent
+    files = [x for x in p.iterdir() if f'{ticker}-' in x.name]
+    [os.remove(file) for file in files]
 
 
 def main():
 
+    print('running tickerbot...')
     client = build_bot()
-
-    ticker = 'TSLA'
-    p = Path(__file__).parent
-    pprint([x for x in p.iterdir() if f'{ticker}-' in x.name])
-    quit()
 
     while True:
         dms = [item['dm'] for item in get_dm_info(client=client)]
-        print(dms)
+
         for dm in dms:
-            print(dm)
 
             try:
                 ticker = check_mention(client=client, dm=dm)
