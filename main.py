@@ -91,7 +91,9 @@ def main():
             try:
                 ticker = check_mention(client=client, dm=dm)
                 if ticker:
-                    print(ticker)
+                    # add logging with time
+                    # with open('log.json','a') as f: write({time,dm,ticker})
+                    print(dm, ticker)
                     client.chat_postMessage(
                         channel=dm, text=f"generating {ticker} report... (eta 1min)"
                     )
